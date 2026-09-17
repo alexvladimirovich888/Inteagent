@@ -45,57 +45,8 @@ Implemented:
 
 The launch action currently creates a browser-local token record. It does not deploy a token to Solana and does not move funds.
 
-## Run Locally
+## Product Boundary
 
-Node.js is not required for this MVP. Run a static HTTP server from the repository root:
+Inteagent is a frontend product prototype. Its browser registry demonstrates the product model and user flows; it is not a blockchain ledger and it does not execute financial operations.
 
-```powershell
-python -m http.server 5500
-```
-
-Open:
-
-```text
-http://localhost:5500/index.html#/launch
-```
-
-Use HTTP rather than opening `index.html` directly with `file://`. Browser wallet extensions require a web origin.
-
-## Deploy To Vercel
-
-1. Import `alexvladimirovich888/Inteagent` into Vercel.
-2. Select framework preset `Other`.
-3. Leave Build Command empty.
-4. Leave Output Directory empty.
-5. Deploy the repository root.
-
-The app is static and does not need a build step.
-
-## Wallet Notes
-
-Phantom must be installed in the regular Chrome or Brave browser. The integrated VS Code browser cannot access Chrome extensions.
-
-The current wallet connection is used as a launch permission gate. The browser-local registry remains local to the deployed origin and browser profile. A token created on localhost will not automatically appear on the Vercel domain.
-
-## Project Files
-
-- `index.html` - application shell, navigation, modal and external icon/font imports
-- `styles.css` - visual system and responsive layout
-- `app.js` - routing, token registry, launch flow, wallet integration and UI behavior
-- `docs/PROJECT.md` - detailed product and technical specification
-
-## Security Boundary
-
-This repository is a prototype. Never put seed phrases, private keys, API secrets or custodial signing logic in frontend code. Production wallet actions must be explicit transactions presented to the user for signing in Phantom.
-
-## Roadmap
-
-- Replace `localStorage` with a database-backed token registry
-- Upload token images and metadata to IPFS or Arweave
-- Deploy a real token program and document the exact contract behavior
-- Add a backend indexer for token and fee activity
-- Define an auditable fee vault and agent permission model
-- Add human approval limits, allowlists and emergency pause controls
-- Add real-time activity and transaction links
-- Add authentication and creator dashboards
-- Add tests for wallet states, launch validation and data persistence
+The detailed product specification is in [docs/PROJECT.md](docs/PROJECT.md).
